@@ -34,17 +34,13 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
     implementation("io.micronaut.beanvalidation:micronaut-hibernate-validator")
-
-
     implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
-
-
-
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
-
     annotationProcessor("io.micronaut.openapi:micronaut-openapi:2.5.0")
 
     testImplementation("io.micronaut:micronaut-http-client")
+    testImplementation("org.mockito:mockito-core:3.12.4")
+    testImplementation("org.mockito:mockito-inline:3.12.4")
 }
 
 
