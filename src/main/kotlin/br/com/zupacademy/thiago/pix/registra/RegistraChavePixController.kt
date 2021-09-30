@@ -19,7 +19,7 @@ class RegistraChavePixController(private val registraChavePixCliente: Keymanager
     private val LOGGER = LoggerFactory.getLogger(this::class.java)
 
     @Post("/pix")
-    fun create(clienteId: UUID, @Valid @Body request: NovaChavePixRequest): HttpResponse<Any> {
+    fun registra(clienteId: UUID, @Valid @Body request: NovaChavePixRequest): HttpResponse<Any> {
 
         LOGGER.info("[$clienteId] criando uma nova chave pix com $request")
         val grpcResponse = registraChavePixCliente.registra(request.toGrpcModel(clienteId))
