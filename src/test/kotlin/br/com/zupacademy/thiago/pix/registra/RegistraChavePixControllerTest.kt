@@ -1,6 +1,5 @@
 package br.com.zupacademy.thiago.pix.registra
 
-import br.com.zupacademy.thiago.KeymanagerListaServiceGrpc
 import br.com.zupacademy.thiago.KeymanagerRegistraServiceGrpc
 import br.com.zupacademy.thiago.RegistraChavePixResponse
 import br.com.zupacademy.thiago.pix.model.enums.TipoChave
@@ -15,7 +14,8 @@ import io.micronaut.http.client.annotation.Client
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.mockito.BDDMockito.given
 import org.mockito.Mockito
