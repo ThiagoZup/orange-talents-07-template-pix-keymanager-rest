@@ -3,6 +3,7 @@ package br.com.zupacademy.thiago.pix.carrega
 import br.com.zupacademy.thiago.CarregaChavePixRequest
 import br.com.zupacademy.thiago.KeymanagerCarregaServiceGrpc
 import br.com.zupacademy.thiago.KeymanagerListaServiceGrpc
+import br.com.zupacademy.thiago.ListaChavesPixRequest
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
@@ -19,7 +20,7 @@ class CarregaChavePixController(
     @Get("/pix/{pixId}")
     fun carrega(clienteId: UUID, pixId: UUID): HttpResponse<Any> {
 
-        LOGGER.info("[$clienteId] carrega chave pix por id: $pixId")
+        LOGGER.info("[$clienteId] carregando chave pix por id: $pixId")
 
         val grpcResponse = carregaChavePixClient.carrega(CarregaChavePixRequest.newBuilder()
                                                             .setPixId(CarregaChavePixRequest.FiltroPorPixId.newBuilder()
@@ -29,5 +30,18 @@ class CarregaChavePixController(
                                                             .build())
     return HttpResponse.ok(DetalheChavePixResponse(grpcResponse))
 
+    }
+
+    @Get("/pix")
+    fun lista(clienteId: UUID): HttpResponse<Any> {
+
+        LOGGER.info("[$clienteId] listando chaves pix")
+
+        val grpcResponse = listaChavesPixClient.lista(ListaChavesPixRequest.newBuilder()
+            .setClienteId(clienteId.toString())
+            .build())
+
+        val chaves = grpcResponse.chavesList.map {ChavePixResponse(it)}
+        return HttpResponse.ok(chaves)
     }
 }
